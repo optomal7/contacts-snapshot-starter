@@ -4,9 +4,17 @@ const dbContacts = require('./db/contacts')
 const app = express()
 const {renderError} = require('./server/utils')
 const routes = require('./server/routes');
+const session = require('express-session');
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views')
+
+app.use(session({
+  secret: 'this is not the greatest string in the world, this is just a secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))

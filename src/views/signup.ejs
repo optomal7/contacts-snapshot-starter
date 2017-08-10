@@ -1,0 +1,30 @@
+<%- include header.ejs %>
+
+  <h1>Sign up</h1>
+
+  <form class="new-user-form" action="/login/signup" method="post">
+
+    <label>
+      <span>New Username:</span>
+      <input type="text" name="newUsername" />
+    </label>
+    <label>
+      <span>New Password:</span>
+      <input type="text" name="newPassword" />
+    </label>
+    <label>
+      <span>Confirm Password:</span>
+      <input type="text" name="confirmPassword" />
+    </label>
+
+    <input type="submit" value="Add User">
+  </form>
+
+  <p>
+    Already a member?
+  </p>
+
+  <p>
+    Log in <a href="/login">here</a>.
+  </p>
+<%- include footer.ejs %>
