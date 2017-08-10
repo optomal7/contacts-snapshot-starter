@@ -2,13 +2,16 @@
 
   <h1>Contacts</h1>
 
+  <h2>Hi <%= userinfo.username %></h2>
   <div class="contact-list">
     <% contacts.forEach(function(contact){ %>
       <div class="contact-list-member">
         <a class="contact-link" href="/contacts/<%= contact.id %>">
           <%= contact.first_name %>&nbsp;<%= contact.last_name %>
         </a>
-        <a class="delete-contact" href="/contacts/<%= contact.id %>/delete" tabindex="-1">X</a>
+        <% if (userinfo.role === 'admin') { %>
+          <a class="delete-contact" href="/contacts/<%= contact.id %>/delete" tabindex="-1">X</a>
+        <% } %>
       </div>
     <% }) %>
   </div>

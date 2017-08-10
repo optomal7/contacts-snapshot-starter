@@ -98,3 +98,41 @@ nav .search-form input {
   color: red;
   font-weight: bold;
 }
+
+.new-user-form label {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.new-user-form label > span {
+  display: inline-block;
+  min-width: 8em;
+}
+
+.new-user-form input[type="submit"] {
+  margin-top: 1em;
+}
+
+.new-user-form-errors {
+  color: red;
+  font-weight: bold;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.login-form label > span {
+  display: inline-block;
+  min-width: 8em;
+}
+
+.login-form input[type="submit"] {
+  margin-top: 1em;
+}
+
+.login-form-errors {
+  color: red;
+  font-weight: bold;
+}
