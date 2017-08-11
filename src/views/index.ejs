@@ -2,7 +2,9 @@
 
   <h1>Contacts</h1>
 
-  <h2>Hi <%= userinfo.username %></h2>
+  <% if (locals.userinfo) { %>
+    <h2>Hi <%= userinfo.username %></h2>
+  <% } %>
   <div class="contact-list">
     <% contacts.forEach(function(contact){ %>
       <div class="contact-list-member">
