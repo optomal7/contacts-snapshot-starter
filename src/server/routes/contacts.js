@@ -3,14 +3,6 @@ const {renderError} = require('../utils')
 
 const router = require('express').Router()
 
-// router.use( (request, response, next) =>{
-//   console.log(request.session);
-//   if(!request.session) {
-//     response.redirect('/login')
-//
-//   }
-//   next()
-// })
 router.get('/new', (request, response) => {
   if (request.session.role !== 'admin') {
     response.sendStatus(403)
@@ -30,14 +22,18 @@ router.post('/', (request, response, next) => {
 
 router.get('/:contactId', (request, response, next) => {
   let userinfo = request.session
-  const contactId = request.params.contactId
-  if (!contactId || !/^\d+$/.test(contactId)) return next()
-  DbContacts.getContact(contactId)
-    .then(function(contact) {
-      if (contact) return response.render('show', { contact, userinfo })
-      next()
-    })
-    .catch( error => renderError(error, response, response) )
+  if (userinfo.role === undefined) {
+    response.redirect('../../')
+  } else {
+    const contactId = request.params.contactId
+    if (!contactId || !/^\d+$/.test(contactId)) return next()
+    DbContacts.getContact(contactId)
+      .then(function(contact) {
+        if (contact) return response.render('show', { contact, userinfo })
+        next()
+      })
+      .catch( error => renderError(error, response, response) )
+  }
 })
 
 
@@ -57,9 +53,10 @@ router.get('/:contactId/delete', (request, response, next) => {
 
 router.get('/search', (request, response, next) => {
   const query = request.query.q
+  let userinfo = request.session
   DbContacts.searchForContact(query)
     .then(function(contacts) {
-      if (contacts) return response.render('index', { query, contacts })
+      if (contacts) return response.render('index', { query, contacts, userinfo })
       next()
     })
     .catch( error => renderError(error, response, response) )
