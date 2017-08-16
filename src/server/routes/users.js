@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+//const app = express();
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
@@ -12,10 +12,11 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log(req.body);
+  console.log('route getting started');
   dbUsers.getUser(req.body)
     .then((data) => {
-      console.log(data.username);
+      console.log('received database response ------>', data.username );
+      console.log('submitted username', req.body.username);
       if (req.body.username === data.username && bcrypt.compareSync(req.body.passHash, data.pass_hash)) {
             console.log(data)
             req.session.username = data.username
