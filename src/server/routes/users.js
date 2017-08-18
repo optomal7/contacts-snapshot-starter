@@ -18,11 +18,11 @@ router.post('/', (req, res) => {
       console.log('received database response ------>', data.username );
       console.log('submitted username', req.body.username);
       if (req.body.username === data.username && bcrypt.compareSync(req.body.passHash, data.pass_hash)) {
-            console.log(data)
+            console.log('Holla at ya boy-------------------')
             req.session.username = data.username
             req.session.role = data.role
             console.log(req.session)
-            res.redirect('../')
+            res.redirect(302, '../')
       } else {
         let error = 'Erm, are you sure you got the username/password right?';
         res.render('login', { error })

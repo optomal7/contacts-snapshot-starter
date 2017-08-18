@@ -1,4 +1,5 @@
 //const {  it } = require('mocha');
+process.env.DATABASE_URL = 'postgres://localhost:5432/contacts_test'
 const { expect } = require('chai');
 const helper = require('../../helpers/db.js')
 const db = require('../../../src/db/contacts.js');
